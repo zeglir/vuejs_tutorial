@@ -1,0 +1,87 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/vue@3.2.22"></script>
+  <title>Vuejs tutorial</title>
+</head>
+<body>
+  <!--
+    ルートテンプレート部分
+    mount によってこの内容が書き換えられる
+  --> 
+  <div id="app">
+    <!-- Mustache構文{{}} で dataを参照する。テキストデータとしての展開に使用できる -->
+    <p>{{ message }}</p>
+    <p>{{ count }}</p>
+    <p>{{ user.prefecture }}</p>
+    <p>{{ colors[1] }}</p>
+
+    <!-- 属性値への展開には Mustache構文は使えない。v-bindディレクティブを使用する。-->
+    <input type="text" v-bind:value="message">
+    
+    <!-- v-ifディレクティブで要素の挿入／削除を切り替える -->
+    <p v-if="trigger">v-ifディレクティブ</p>
+    
+    <!-- v-forディレクティブで配列の要素を列挙する -->
+    <ol>
+      <li v-for="color in colors">{{ color }}</li>
+    </ol>
+    <!-- v-forディレクティブでオブジェクトのプロパティを列挙する -->
+    <ul>
+      <li v-for="(value, key) in user">{{ key }} : {{ value }}</li>
+    </ul>
+    <!-- v-onディレクティブで clickイベントの処理を登録する -->
+    <button v-on:click="onClick">現在時刻</button>
+    <p>{{ now }}</p>
+    <!-- v-modelディレクティブで双方向データバインディングを行う -->
+    <p><input type="text" v-model="message"></p>
+    <p><input type="text" v-model="message"></p>
+    <!-- コンポーネントを表示 -->
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+  </div>
+
+  <!--
+    テンプレートの後に記述する。また、<head> の中に記述しても動作しない。
+  -->
+  <script>
+    // Vueインスタンスを作成
+    const app = Vue.createApp({
+      // createApp の第一引数（options）に指定されたオプションは、ルートコンポーネントの設定に使われる。
+      // コンポーネントに dataプロパティ（※関数）を定義すると、
+      // そこに定義されたプロパティはコンポーネントインスタンスを介してテンプレートに公開される
+      //
+      // ここでは dataプロパティとして、messageプロパティを持つオブジェクトリテラルを返す関数を定義する
+      // アロー関数のreturn省略形でオブジェクトリテラルを返す場合、()で囲む必要がある
+      // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/Arrow_functions#advanced_syntax
+      data : () => ({
+        message: 'こんにちは、世界！',
+        count: 99,
+        user: {
+          firstName: 'Taro',
+          lastName: 'Yamada',
+          prefecture: '東京'
+        },
+        colors: ['赤', '緑', '青'],
+        trigger: true,
+        now: '-'
+      }),
+      // コンポーネントインスタンスに挿入するメソッドを定義する
+      // methodsの関数定義にアロー関数は使えない。thisがコンポーネントインスタンスを指さずに undefinedになるため
+      methods : {
+        onClick() {
+          this.now = new Date().toLocaleString();
+        }
+      }
+    });
+    // コンポーネントを登録
+    app.component('hello-component', {
+      template: '<p>こんにちは、コンポーネント！</p>'
+    });
+    // Vueインスタンスを、指定したidのルートテンプレートにマウントする。
+    // 指定したHTML要素が、Vue.jsが構築したDOMによって置き換えられる
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
