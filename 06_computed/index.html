@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Section6 算出プロパティ</title>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <!-- Mustache内の JavaScript式で計算 -->
+    <p>{{ message.split('').reverse().join('') }}</p>
+    <!-- computedプロパティ -->
+    <p>{{ doReverse }}</p>
+    <!-- methodsプロパティ -->
+    <p>{{ doReverseMethod() }}</p>
+
+    <p><h2>税抜価格</h2><input type="text" v-model="basePrice"></p>
+    <!-- computedプロパティ getter/setterあり -->
+    <p><h2>税込価格</h2><input type="text" v-model="taxIncludedPrice"></p>
+
+    <h2>computed:</h2>
+    <!-- computed: のトリガーはリアクティブな依存関係に変更があったときのみ -->
+    <!-- Math.random() の呼び出しはリアクティブではないため 2回目以降はキャッシュ値が使われる -->
+    <ol>
+      <li>{{ computedRandom }}</li>
+      <li>{{ computedRandom }}</li>
+      <li>{{ computedRandom }}</li>
+    </ol>
+    <!-- methods: は毎回コールされる -->
+    <h2>methods:</h2>
+    <ol>
+      <li>{{ methodsRandom() }}</li>
+      <li>{{ methodsRandom() }}</li>
+      <li>{{ methodsRandom() }}</li>
+    </ol>
+  </div>
+  <script src="https://unpkg.com/vue@3.2.22"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
