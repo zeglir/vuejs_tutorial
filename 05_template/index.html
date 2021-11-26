@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section5 テンプレート構文</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <!--v-cloakとCSSの設定でコンパイル完了まで要素を隠す -->
+  <div id="app" v-cloak>
+    <!-- v-onceの配下要素は初回だけ展開されて以降は変化しない -->
+    <p v-once>{{ message }}</p>
+    <!-- v-preの配下要素はそのまま表示される -->
+    <p v-pre>{{ message }}</p>
+    <!-- v-htmlの要素はinnerHTMLとして解釈される -->
+    <p v-html="message"></p>
+    <p>{{ message }}</p>
+    <button @click="doReverse">反転</button>
+  </div>
+
+  <script src="https://unpkg.com/vue@3.2.22"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
