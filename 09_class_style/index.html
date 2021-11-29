@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Section9 クラスとスタイルのバインディング</title>
+</head>
+<body>
+  <div id="app">
+    <!-- オブジェクト構文での適用 -->
+    <p><span class="cWall" :class="{cLarge: isLarge, cError: isError}" >こんにちは、世界！</span></p>
+    <!-- 算出プロパティでオブジェクトデータを適用 -->
+    <p><span class="cWall" :class="classStyle">こんにちは、世界！</span></p>
+    <p>
+      <button @click="changeFontSize()">サイズ切替</button>
+      <button @click="changeFontColor()">色切替</button>  
+    </p>
+
+    <!-- 配列構文での適用 -->
+    <p><span :class="largeClass">こんにちは、世界！</span></p>
+    <p><span :class="[largeClass, errorClass]">こんにちは、世界！</span></p>
+    <p><span class="cWall" :class="[largeClass, errorClass]">こんにちは、世界！</span></p>
+    <!-- 三項演算子の使用 -->
+    <p><span :class="isLarge ? largeClass : '' ">こんにちは、世界！</span></p>
+    <!-- 配列構文の内部でオブジェクト構文 -->
+    <p><span :class="[{cLarge: isLarge}, {cError: isError}, wallClass]">こんにちは、世界！</span></p>
+
+    <!-- インラインスタイルでの指定（CSSプロパティをキャメルケースで） -->
+    <p><span :style="{fontSize: sLarge, color: sError}">こんにちは、世界！</span></p>
+    <!-- インラインスタイルでの指定（CSSプロパティをケバブケースで） -->
+    <p><span :style="{'font-size': sLarge, color: sError}">こんにちは、世界！</span></p>
+    <!-- インラインスタイルでの指定（算出プロパティでオブジェクトデータを適用） -->
+    <p><span :style="inlineStyle">こんにちは、世界！</span></p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3.2.22"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
