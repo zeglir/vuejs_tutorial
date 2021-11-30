@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Section12 フォーム入力バインディング</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{ $data }}</p>
+    <p><input type="text" v-model="message"></p>
+    <!-- lazyをつけると inputイベントではなく changeイベントで同期が発生する -->
+    <p><input type="text" v-model.lazy="message"></p>
+    <!-- trimをつけると、前後の空白文字を取り除く。全角空白やタブも消える -->
+    <p><input type="text" v-model.trim="message"></p>
+    <!-- textareaでは Mustache構文が機能しないため、v-modelを使用する -->
+    <p><textarea v-model="message"></textarea></p>
+
+    <!-- numberをつけると、number型へキャストする -->
+    <p>
+      <input type="text" v-model.number="age">
+      {{ age + 10 }}
+    </p>
+
+    <!-- 単一のチェックボックス（booleanとマッピング） -->
+    <p>
+      <input type="checkbox" id="task" value="タスク" v-model="isChecked">
+      <label for="task">{{ isChecked }}</label>
+    </p>
+    <!-- 複数のチェックボックス（配列とマッピング, name属性の代わりに v-modelを使用） -->
+    <p>
+      <input type="checkbox" id="red" value="赤" v-model="colors">
+      <label for="red">赤</label>
+      <input type="checkbox" id="yellow" value="黄" v-model="colors">
+      <label for="yellow">黄</label>
+      <input type="checkbox" id="blue" value="青" v-model="colors">
+      <label for="blue">青</label>
+    </p>
+    <p>Checked: {{ colors }}</p>
+
+    <!-- ラジオボタン（stringとマッピング, name属性の代わりに v-modelを使用） -->
+    <p>
+      <input type="radio" id="apple" value="りんご" v-model="fruit">
+      <label for="apple">りんご</label>
+      <input type="radio" id="orange" value="オレンジ" v-model="fruit">
+      <label for="orange">オレンジ</label>
+      <input type="radio" id="banana" value="バナナ" v-model="fruit">
+      <label for="banana">バナナ</label>
+    </p>
+    <p>Picked: {{ fruit }}</p>
+
+    <!-- 単数選択のセレクトボックス（stringとマッピング） -->
+    <select id="month" v-model="month">
+      <option value="" disabled>選択してください</option>
+      <option value="January">１月</option>
+      <option value="February">２月</option>
+      <option value="March">３月</option>
+    </select>
+    <p>Selected: {{ month }}</p>
+    <!-- 複数選択のセレクトボックス（配列とマッピング） -->
+    <select id="months" v-model="months" multiple>
+      <option value="January">１月</option>
+      <option value="February">２月</option>
+      <option value="March">３月</option>
+    </select>
+    <p>Selected: {{ months }}</p>
+  </div>
+  <script src="https://unpkg.com/vue@3.2.22"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
