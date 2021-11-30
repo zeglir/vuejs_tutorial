@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Section11 イベントハンドラ</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{ counter }}</p>
+    <!-- インラインイベントハンドラ -->
+    <p><button @click="counter++">カウント</button></p>
+    <!-- methodsでイベントハンドラを定義、引数なしの場合()を省略可能 -->
+    <p><button @click="countUp">カウント</button></p>
+    <!-- イベントオブジェクトとユーザ引数を併用する場合は $event で参照する -->
+    <p><button @click="countDouble($event, '2倍にする')">2倍</button></p>
+    <!-- イベント修飾子onceで1回だけ実行可能なイベントとする -->
+    <p><button @click.once="countTriple">1回だけ3倍</button></p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3.2.22"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
