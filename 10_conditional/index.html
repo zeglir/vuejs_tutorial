@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Section10 条件付きレンダリング</title>
+</head>
+<body>
+  <div id="app">
+    <!-- v-if と v-else -->
+    <!--
+      DOM自体から要素を削除・追加する
+      切替コストが高い
+      v-else-if, v-else と組み合わせることができる
+      切替が少ない場合に有効
+    -->
+    <p v-if="toggle">はい</p>
+    <p v-else>いいえ</p>
+    <p><button @click="changeToggle()">切替</button></p>
+
+    <!-- v-showを使った切替 -->
+    <!--
+      CSSで描画を切替る（DOMに要素は存在する）
+      初期描画コストが高い
+      v-else-if, v-else と組み合わせることはできない
+      切替が多い場合に有効
+    -->
+    <p v-show="toggle">はい</p>
+    <p v-show="!toggle">いいえ</p>
+
+    <!-- v-if と v-else-if と v-else -->
+    <p v-if="checkedColor === 'red'">赤</p>
+    <p v-else-if="checkedColor === 'yellow'">黄色</p>
+    <p v-else-if="checkedColor === 'blue'">青</p>
+    <p v-else>不明</p>
+    <p>
+      <!--
+        ラジオボタンと v-model 
+        name属性の代わりに v-modelを使用してグルーピングを表現
+        id は label for と連携してラジオボタンのラベルを表現
+        value はフォームを submitすると name(v-model)=value の形式で送信される
+      -->
+      <input type="radio" value="red" id="danger" v-model="checkedColor">
+      <label for="danger">危険</label>
+      <input type="radio" value="yellow" id="warn" v-model="checkedColor">
+      <label for="warn">警告</label>
+      <input type="radio" value="blue" id="safe" v-model="checkedColor">
+      <label for="safe">安全</label>
+    </p>
+  </div>
+  <script src="https://unpkg.com/vue@3.2.22"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
