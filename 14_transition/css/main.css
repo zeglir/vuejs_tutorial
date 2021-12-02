@@ -1,0 +1,13 @@
+/* 要素の追加中・削除中に適用され続けるクラス */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity, 5s;
+}
+/* 要素の追加直前、要素の削除中に適用されるクラス */
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+/* 要素の削除直前、要素の追加中に適用されるクラス */
+/* 要素のopacityは1がデフォルトなので以下の指定は無くても動く */
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+}

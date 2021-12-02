@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Section14 トランジション</title>
+</head>
+  <div id="app">
+    <p><button @click="changeMessage">フェードイン・アウト</button></p>
+    <p>
+      <!-- transitionに指定した nameは、CSSに定義するトランジションクラスの接頭辞と連動する -->
+      <transition name="fade">
+      <span v-show="isShow">{{ message }}</span>
+      </transition>
+    </p>
+  </div>
+<body>
+  <script src="https://unpkg.com/vue@3.2.22"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
