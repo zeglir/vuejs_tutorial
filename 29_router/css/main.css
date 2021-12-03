@@ -1,0 +1,20 @@
+.link {
+  margin: 3px;
+  border: solid 1px blue;
+  background-color: azure;
+}
+.user {
+  background-color: brown;
+  color: white;
+  padding: 5px;
+}
+.user-profile {
+  background-color: yellowgreen;
+  margin: 5px;
+  padding: 5px;
+}
+.user-setting {
+  background-color: tomato;
+  margin: 5px;
+  padding: 5px;
+}

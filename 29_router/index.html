@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Section29 Vue Router</title>
+</head>
+<body>
+  <div id="app">
+    <!--
+      aタグの代わりに、router-linkカスタムコンポーネントを使用する。
+      URL切替（ページ遷移）時に、リロードが発生しない。
+    -->
+    <h2>router-link</h2>
+    <router-link class="link" to="/top">Go to top</router-link>
+    <router-link class="link" to="/users/admin">Go to user(Admin)</router-link>
+    <router-link class="link" to="/users/admin/profile">Go to profile(Admin)</router-link>
+    <router-link class="link" to="/users/admin/setting">Go to setting(Admin)</router-link>
+    <!-- 
+      名前つきrouteを使う場合。上記と同じ動きをする。 
+      ・URLのハードコーディングが不要
+      ・paramsを自動でURLエンコード・デコードしてくれる
+    -->
+    <h2>named route</h2>
+    <router-link class="link" :to="{name: 'r-users', params: {userId: '太郎'}}">Go to user(太郎)</router-link>
+    <router-link class="link" :to="{name: 'r-users-profile', params: {userId: '太郎'}}">Go to profile(太郎)</router-link>
+    <router-link class="link" :to="{name: 'r-users-setting', params: {userId: '太郎'}}">Go to setting(太郎)</router-link>
+
+    <!-- リダイレクトが定義されたrouteへのリンク -->
+    <h2>redirect</h2>
+    <router-link class="link" to="/">Redirect to top</router-link>
+    <router-link class="link" to="/user/admin">Redirect to user(Admin)</router-link>
+    <router-link class="link" to="/user/admin/profile">Redirect to profile(Admin)</router-link>
+    <router-link class="link" to="/user/admin/setting">Redirect to setting(Admin)</router-link>
+
+    <!-- aliasが定義されたrouteへのリンク -->
+    <h2>alias</h2>
+    <router-link class="link" to="/players/taro">Go to user(taro)</router-link>
+    <router-link class="link" to="/p/taro">Alias to user(taro)</router-link>
+    <router-link class="link" to="/players/taro/profile">Go to profile(taro)</router-link>
+    <router-link class="link" to="/playerprofile/taro">Alias to profile(taro)</router-link>
+    <router-link class="link" to="/players/taro/prof">Alias to profile(taro)</router-link>
+    <!-- URLに対応するコンポーネントは route-viewの欄に表示される -->
+    <h2>router-view</h2>
+    <router-view></router-view>
+  </div>
+
+  <script src="https://unpkg.com/vue@3.2.22"></script>
+  <script src="https://unpkg.com/vue-router@4.0.12"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
